@@ -34,7 +34,10 @@ wp core install --url="http://$LOCAL_DOMAIN" --title="$PROJECT_NAME" --admin_use
 wp config set WP_DEBUG 'true' --raw  
 wp config set WP_DEBUG_DISPLAY 'false' --raw  
 wp config set SCRIPT_DEBUG 'true' --raw 
-wp config set WP_DEBUG_LOG \'/var/www/log/php-error.log\' --raw  
+wp config set WP_DEBUG_LOG \'/var/www/log/php-error.log\' --raw
+
+# Set WP_ENVIRONMENT_TYPE to development
+wp config set WP_ENVIRONMENT_TYPE \'development\' --raw
 
 # Set timezone
 wp option update timezone_string 'America/New_York'
