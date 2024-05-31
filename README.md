@@ -25,6 +25,11 @@ Ensure you have the following installed:
     docker-compose up --build
     ```
 
+4. Install WordPress:
+    ```sh
+    docker compose exec -u www-data apache2 bash install-wp.sh
+    ```
+
 ### Folder Structure
 
 - `_backups`: Backup files
