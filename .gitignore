@@ -1,0 +1,68 @@
+/*
+
+# Keep this root files
+!.gitignore
+!.jsbeautifyrc
+!Dockerfile
+!docker-compose.yml
+!docker-entrypoint.sh
+!.env
+!composer.*
+
+# Keep the '_logs' folder only
+!_logs
+_logs/*
+!_logs/.gitkeep
+!_logs/profiler
+_logs/profiler/*
+!_logs/profiler/.gitkeep
+
+# Keep the 'public' folder only
+!public
+!public/
+public/*
+!public/.gitkeep
+
+# Keep the '_backups' folder only
+!_backups
+_backups/*
+!_backups/.gitkeep
+
+# Keep the '_tmp' folder only
+!_tmp
+_tmp/*
+!_tmp/.gitkeep
+
+# Keep the .vscode folder
+!.vscode
+!.vscode/*
+
+# Keep the '_config' folder
+!_config
+!_config/*
+
+# Keep all files in '_scripts' folder
+!_scripts
+!_scripts/
+_scripts/*
+!_scripts/*
+
+# Unkeep all in wp-content except themes and plugins specified below
+!public/wp-content
+public/wp-content/*
+!public/wp-content/themes
+public/wp-content/themes/*
+!public/wp-content/plugins
+public/wp-content/plugins/*
+
+# Keep specific themes and plugins
+!public/wp-content/themes/[THEME_NAME]
+!public/wp-content/plugins/[PLUGIN_NAME]
+
+# Unkeep specific themes and plugins folders and files
+public/wp-content/themes/[THEME_NAME]/node_modules
+public/wp-content/themes/[THEME_NAME]/vendor
+public/wp-content/themes/[THEME_NAME]/assets
+public/wp-content/plugins/[PLUGIN_NAME]/node_modules
+public/wp-content/plugins/[PLUGIN_NAME]/vendor
+public/wp-content/plugins/[PLUGIN_NAME]/assets

@@ -1,0 +1,114 @@
+services:
+
+  apache2:
+    # Use 'apache2' to reference the Web host name in the network
+    container_name: apache2_${COMPOSE_PROJECT_NAME}
+    environment:
+      - PROJECT_NAME=${COMPOSE_PROJECT_NAME}
+      - WP_ADMIN_USER=${WP_ADMIN_USER}
+      - WP_ADMIN_PASS=${WP_ADMIN_PASS}
+      - WP_ADMIN_EMAIL=${WP_ADMIN_EMAIL}
+      - WP_DB_NAME=${WP_DB_NAME}
+      - WP_DB_USER=${WP_DB_USER}
+      - WP_DB_PASS=${WP_DB_PASS}
+      - WP_DB_HOST=db
+      - WP_TABLE_PREFIX=${WP_TABLE_PREFIX}
+      - DB_BACKUP_PATH=${DB_BACKUP_PATH}
+      - REMOTE_DOMAIN=${REMOTE_DOMAIN}
+      - LOCAL_DOMAIN=${LOCAL_DOMAIN}
+      - APACHE_LOG_DIR=/var/www/log
+    depends_on:
+      - db
+    build:
+      context: .
+      args:
+        PHP_VERSION: ${PHP_VERSION}
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./public/:/var/www/html
+      - ./_logs/:/var/www/log/
+      - ./_config/php.ini:/usr/local/etc/php/conf.d/php.ini
+      - ./_config/vhost.conf:/etc/apache2/sites-available/000-default.conf
+      - ./_config/tasks.cron:/etc/cron.d/tasks.cron
+      - ./_backups/:/var/www/backups/
+      - ./_scripts/docker:/usr/local/bin/scripts/docker
+    ports:
+      - 80:80
+      - 443:443
+    restart: unless-stopped
+    networks:
+      - wpnet
+
+  db:
+    # Use 'db' to reference DB host name in the network
+    container_name: db_${COMPOSE_PROJECT_NAME}
+    image: mysql:8.0
+    volumes:
+      - db_data:/var/lib/mysql
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+      MYSQL_DATABASE: ${WP_DB_NAME}
+      MYSQL_USER: ${WP_DB_USER}
+      MYSQL_PASSWORD: ${WP_DB_PASS}
+    networks:
+      - wpnet
+
+  pma:
+    # Visit http://localhost:8080 to view phpmyadmin UI in a web browser
+    container_name: pma_${COMPOSE_PROJECT_NAME}
+    depends_on:
+      - db
+    image: phpmyadmin/phpmyadmin
+    ports:
+      - 8080:80
+    restart: unless-stopped
+    environment:
+      PMA_HOST: db
+      PMA_USER: ${WP_DB_USER}
+      PMA_PASSWORD: ${WP_DB_PASS}
+      MYSQL_ROOT_PASSWORD: ${DB_ROOT_PASS}
+    networks:
+      - wpnet
+
+  mailhog:
+    # Visit http://localhost:8025 to view mailhog UI in a web browser
+    container_name: mailhog_${COMPOSE_PROJECT_NAME}
+    image: mailhog/mailhog:latest
+    restart: unless-stopped
+    ports:
+      - "8025:8025"
+      - "1025:1025"
+    networks:
+      - wpnet
+
+  ftp:
+    # Use 'ftp' to reference FTP host name in the network
+    container_name: ftp_${COMPOSE_PROJECT_NAME}
+    image: stilliard/pure-ftpd:hardened
+    environment:
+      - PUBLICHOST=localhost
+      - FTP_USER_NAME=admin
+      - FTP_USER_PASS=secret
+      - FTP_USER_HOME=/home/ftpusers/admin
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - ./_tmp/ftp-files:/home/ftpusers/admin
+      - ftp_data:/home/ftpusers
+      - ftp_data:/etc/ssl/private
+      - ftp_data:/etc/pure-ftpd/passwd
+    restart: unless-stopped
+    networks:
+      - wpnet
+
+volumes:
+  db_data:
+  ftp_data:
+
+
+networks:
+  wpnet:
+    driver: bridge

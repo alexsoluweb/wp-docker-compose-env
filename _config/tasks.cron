@@ -1,0 +1,14 @@
+#################################################################
+# To update the crontab after modifying this file, run the following command in the docker container terminal:
+# crontab /etc/cron.d/tasks.cron
+#
+# To list the crontab, run the following command in the docker container terminal:
+# crontab -l
+#
+# To remove the crontab, run the following command in the docker container terminal:
+# crontab -r
+#################################################################
+
+# Run 'wp-cron.php' every 30 minutes, output the log to /var/www/log/cronjob.log, and output the response to /var/www/log/response.log
+*/30 * * * * wget -o /var/www/log/cronjob.log -O /var/www/log/response.log 'http://apache2/wp-cron.php?doing_wp_cron' > /dev/null 2>&1
+

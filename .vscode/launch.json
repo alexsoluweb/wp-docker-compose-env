@@ -1,0 +1,37 @@
+{
+    "configurations": [
+        {
+            "name": "Firefox",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "url": "http://localhost",
+            "tmpDir": "${workspaceFolder}/_tmp",
+            "timeout": 30,
+            "webRoot": "${workspaceFolder}/public",
+            "pathMappings": [
+                {
+                    "url": "webpack:///src",
+                    "path": "${workspaceFolder}/public/wp-content/[plugins|themes]/[project_name]/src"
+                }
+            ]
+        },
+        {
+            "name": "Xdebug",
+            "type": "php",
+            "request": "launch",
+            "port": 9003,
+            "pathMappings": {
+                "/var/www/html": "${workspaceFolder}/public/"
+            },
+            "xdebugSettings": {
+                "max_depth": 100,
+                "max_data": 1024,
+                "max_children": 100,
+                "show_hidden": 1
+            },
+            "log": false,
+            "maxConnections": 1
+        }
+    ]
+}

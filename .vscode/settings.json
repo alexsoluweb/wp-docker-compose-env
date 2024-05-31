@@ -1,0 +1,16 @@
+{
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true,
+    "docker.commands.attach": "${containerCommand} exec -it -u www-data ${containerId} ${shellCommand}",
+    "intelephense.environment.phpVersion": "8.2.0",
+    "intelephense.environment.documentRoot": "./public",
+    "intelephense.environment.includePaths": [
+        "./public/*",
+        "./public/wp-admin",
+        "./public/wp-includes",
+        "./public/wp-content",
+        "./public/wp-content/themes/*/vendor",
+        // If needed, put the path to the vendor folder for indexation
+        // "./public/wp-content/path/to/vendor",
+    ],
+}

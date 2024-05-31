@@ -1,0 +1,50 @@
+{
+    "name": "asw/boilerplate-plugins",
+    "description": "Here you can add all the plugins you need for your project",
+    "version": "1.0.1",
+    "type": "project",
+    "license": "UNLICENSED",
+    "repositories": [
+        {
+            "type": "composer",
+            "url": "https://wpackagist.org"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "config": {
+        "sort-packages": true,
+        "allow-plugins": {
+            "composer/installers": true
+        }
+    },
+    "extra": {
+        "installer-paths": {
+            "public/wp-content/plugins/{$name}/": [
+                "type:wordpress-plugin"
+            ]
+        }
+    },
+    "require-dev": {
+        "wpackagist-plugin/loco-translate": "*",
+        "wpackagist-plugin/woo-order-test": "*",
+        "wpackagist-plugin/query-monitor": "*",
+        "wpackagist-plugin/wp-crontrol": "*",
+        "wpackagist-plugin/wp-migrate-db": "*",
+        "wpackagist-plugin/health-check": "*",
+        "wpackagist-plugin/wp-staging": "*"
+    },
+    "require": {
+        "wpackagist-plugin/user-switching": "*",
+        "wpackagist-plugin/polylang": "*",
+        "wpackagist-plugin/duplicate-post": "*",
+        "wpackagist-plugin/disable-comments": "*",
+        "wpackagist-plugin/safe-svg": "*",
+        "wpackagist-plugin/webp-express": "*",
+        "wpackagist-plugin/wp-mail-smtp": "*",
+        "wpackagist-plugin/wordpress-seo": "*",
+        "wpackagist-plugin/google-site-kit": "*",
+        "wpackagist-plugin/post-types-order": "*",
+        "wpackagist-plugin/complianz-gdpr": "*"
+    }
+}

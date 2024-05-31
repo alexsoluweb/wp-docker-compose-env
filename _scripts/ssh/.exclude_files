@@ -1,0 +1,14 @@
+.git/
+.gitignore
+yarn.*
+composer.*
+package.*
+node_modules/
+webpack.config.*
+postcss.config.*
+tailwind.config.*
+tsconfig.json
+jsconfig.json
+Gruntfile.js
+gulpfile.js
+.babelrc
