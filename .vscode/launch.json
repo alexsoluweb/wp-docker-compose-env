@@ -1,22 +1,6 @@
 {
     "configurations": [
         {
-            "name": "Firefox",
-            "type": "firefox",
-            "request": "launch",
-            "reAttach": true,
-            "url": "http://localhost",
-            "tmpDir": "${workspaceFolder}/_tmp",
-            "timeout": 30,
-            "webRoot": "${workspaceFolder}/public",
-            "pathMappings": [
-                {
-                    "url": "webpack:///src",
-                    "path": "${workspaceFolder}/public/wp-content/[plugins|themes]/[project_name]/src"
-                }
-            ]
-        },
-        {
             "name": "Xdebug",
             "type": "php",
             "request": "launch",
@@ -32,6 +16,25 @@
             },
             "log": false,
             "maxConnections": 1
+        },
+        {
+            "name": "Firefox",
+            "type": "firefox",
+            "request": "launch",
+            "reAttach": true,
+            "url": "http://localhost:3005",
+            "tmpDir": "${workspaceFolder}/_tmp",
+            "timeout": 30,
+            "webRoot": "${workspaceFolder}/public",
+            "pathMappings": [
+                {
+                    // Replace [package_name] with the name of your package.json
+                    "url": "webpack://[package_name]/src",
+                    // Replace [plugins|themes] with either "plugins" or "themes"
+                    // Replace [project_name] with the name of your project folder
+                    "path": "${workspaceFolder}/public/wp-content/[plugins|themes]/[project_name]/src"
+                }
+            ]
         }
     ]
 }
