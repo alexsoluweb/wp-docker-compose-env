@@ -29,3 +29,7 @@ wp search-replace "http:\/\/$REMOTE_DOMAIN" "$PROTOCOL:\/\/$LOCAL_DOMAIN" --all-
 wp search-replace "https%3A%2F%2F$REMOTE_DOMAIN" "$PROTOCOL%3A%2F%2F$LOCAL_DOMAIN" --all-tables --skip-plugins --skip-themes
 wp search-replace "http%3A%2F%2F$REMOTE_DOMAIN" "$PROTOCOL%3A%2F%2F$LOCAL_DOMAIN" --all-tables --skip-plugins --skip-themes
 wp search-replace "$REMOTE_DOMAIN" "$LOCAL_DOMAIN" --all-tables --skip-plugins --skip-themes
+
+# Replace the admin email with WP_ADMIN_EMAIL environment variable
+echo "Replacing admin email... $WP_ADMIN_EMAIL"
+wp option update admin_email "$WP_ADMIN_EMAIL"
