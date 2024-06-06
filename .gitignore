@@ -29,11 +29,6 @@ public/*
 _backups/*
 !_backups/.gitkeep
 
-# Keep the '_tmp' folder only
-!_tmp
-_tmp/*
-!_tmp/.gitkeep
-
 # Keep the .vscode folder
 !.vscode
 !.vscode/*
@@ -47,6 +42,12 @@ _tmp/*
 !_scripts/
 _scripts/*
 !_scripts/*
+
+# Keep all files in '_tmp' folder
+!_tmp
+!_tmp/
+_tmp/*
+!_tmp/*
 
 # Unkeep all in wp-content except themes and plugins specified below
 !public/wp-content
