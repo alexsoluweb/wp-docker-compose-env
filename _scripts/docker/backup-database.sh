@@ -2,7 +2,7 @@
 set -e
 
 # Set the backup directory
-DB_DIR=/var/www/backups
+DB_DIR=$DB_BACKUP_PATH
 mkdir -p $DB_DIR
 
 # Get the current date and time

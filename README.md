@@ -14,8 +14,8 @@ Ensure you have the following installed:
 
 1. Clone the repository:
     ```sh
-    git clone https://github.com/alexsoluweb/wp-docker-compose-env.git
-    cd wp-docker-compose-env
+    git clone https://github.com/alexsoluweb/wp-docker-compose-env.git [project_name]
+    cd [project_name]
     ```
 
 2. Edit the `.env` file to match your project settings. The file contains placeholders that need to be replaced with actual values.

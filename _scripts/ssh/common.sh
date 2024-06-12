@@ -60,6 +60,7 @@ if [[ -z "$LOCAL_DOMAIN" || -z "$LOCAL_PATH" || -z "$LOCAL_DB_BACKUP_PATH" || -z
 fi
 
 # Export SSHPASS if REMOTE_PASS is provided to avoid special characters issues.
+# SSHPASS env is used by sshpass to provide password to ssh.
 if [ -n "$REMOTE_PASS" ]; then
   export SSHPASS=$REMOTE_PASS
 fi
