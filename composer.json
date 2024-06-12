@@ -1,7 +1,6 @@
 {
-    "name": "asw/boilerplate-plugins",
+    "name": "boilerplate-plugins",
     "description": "Here you can add all the plugins you need for your project",
-    "version": "1.0.1",
     "type": "project",
     "license": "UNLICENSED",
     "repositories": [
@@ -24,6 +23,12 @@
                 "type:wordpress-plugin"
             ]
         }
+    },
+    "scripts": {
+        "post-install-cmd": [
+            "rm -rf vendor",
+            "rm composer.lock"
+        ]
     },
     "require-dev": {
         "wpackagist-plugin/loco-translate": "*",
