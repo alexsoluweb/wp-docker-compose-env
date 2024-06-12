@@ -11,4 +11,5 @@ tsconfig.json
 jsconfig.json
 Gruntfile.js
 gulpfile.js
+bud.config.js
 .babelrc
